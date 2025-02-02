@@ -314,10 +314,7 @@ public class RemoteFragment extends Fragment {
         try {
             Device device = preferenceUtils.getConnectedDevice();
 
-            if (device.getIsTv() != null) {
-                boolean isTv = Boolean.valueOf(device.getIsTv());
-                getView().findViewById(R.id.volume_controls).setVisibility(isTv ? View.VISIBLE : View.GONE);
-            }
+            getView().findViewById(R.id.volume_controls).setVisibility(View.VISIBLE);
 
         } catch (Exception ex) {
             Log.e(TAG, "Error updating remote layout for newly connected device.");
