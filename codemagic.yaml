@@ -1,15 +1,18 @@
 workflows:
   android-build:
     name: Android Build
-    max_build_duration: 60
+    max_build_duration: 60  # Maximum build time in minutes
     environment:
       vars:
-        BUILD_TYPE: debug    # Can be debug or release
-      java: 17               # Use Java 17 for compatibility with AGP
-      android_signing:
-        - keystore_reference: your_keystore_reference  # Optional for signed builds
-    scripts:
-      - name: Install dependencies
-        script: ./gradlew dependencies
+        BUILD_TYPE: debug   # Build type: debug (for testing)
+      java: 17              # Use Java 17 as required by Android Gradle Plugin
 
-      - name:
+    scripts:
+      - name: Clean Project
+        script: ./gradlew clean
+
+      - name: Build Debug APK
+        script: ./gradlew assembleDebug
+
+    artifacts:
+      - app/build/outputs/apk/debug/app-debug.apk
